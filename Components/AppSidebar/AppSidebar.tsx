@@ -17,13 +17,12 @@ function detectView(): View {
   if (isTablet) return "tablet";
   return "desktop";
 }
-const COPYRIGHT_YEAR = new Date().getFullYear(); // ثابت
+const COPYRIGHT_YEAR = new Date().getFullYear(); 
 
 export default function AppSidebar({
   usedBytes = 0,
   quotaBytes = 20 * 1024 * 1024 * 1024,
 }: { usedBytes?: number; quotaBytes?: number }) {
-  // ❌ كان useState(getView) يسبب mismatch
   const [view, setView] = useState<View>("desktop");
   const [mounted, setMounted] = useState(false);
 
@@ -117,7 +116,6 @@ export default function AppSidebar({
     </div>
   );
 
-  /* قبل الـmount: أعطي placeholder ثابت يمنع القفز */
   if (!mounted) {
     return (
       <aside
