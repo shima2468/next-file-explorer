@@ -2,8 +2,8 @@
 import { useState } from "react";
 import { Plus } from "lucide-react";
 import CreateFolderModal from "@/Components/CreateFolderModal/CreateFolderModal";
-import { CreateFolderButtonProps } from "@/lib/types";
-
+import type { CreateFolderButtonProps } from "@/lib/types";
+import { toast } from "react-toastify";
 
 export default function CreateFolderButton({
   parentId,

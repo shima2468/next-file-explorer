@@ -89,7 +89,8 @@ export default function SubFolderCard({
       ? "grid-cols-1"
       : layout === "two"
       ? "grid-cols-2"
-      : "grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6";
+      : "grid-cols-[repeat(auto-fill,minmax(260px,1fr))]";
+
 
   const hasAny = subfolders.length > 0;
   const hasMatches = list.length > 0;

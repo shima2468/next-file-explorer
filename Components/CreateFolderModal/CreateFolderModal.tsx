@@ -56,7 +56,7 @@ export default function CreateFolderModal({
       }
 
       const json = (await res.json().catch(() => ({}))) as { id?: string };
-      toast.success("Folder created");
+      toast.success("Folder created successfully");
 
       onCreated?.(json?.id ?? "");
       setName("");

@@ -29,8 +29,9 @@ export default function UploadBox({ folderId }: UploadBoxProps) {
         }
       });
 
+      // توست لكل ملف أثناء/بعد الرفع
       await toast.promise(p, {
-        pending: `Uploading ${file.name}...`,
+        pending: `Uploading ${file.name}…`,
         success: `Uploaded ${file.name}`,
         error: `Failed: ${file.name}`,
       });
@@ -38,13 +39,24 @@ export default function UploadBox({ folderId }: UploadBoxProps) {
 
     try {
       await Promise.all(tasks);
+
+      // ✅ توست نهائي بعد اكتمال رفع كل الملفات داخل هذا الفولدر
+      toast.success(
+        list.length === 1
+          ? `File uploaded to folder successfully`
+          : `${list.length} files uploaded to folder successfully`
+      );
+
       router.refresh();
+
       setTimeout(() => {
         document
           .getElementById("files-section")
           ?.scrollIntoView({ behavior: "smooth", block: "start" });
       }, 60);
-    } catch {
+    } catch (err: any) {
+      // توست فشل عام لو أي ملف فشل
+      toast.error("Some files failed to upload");
     }
   }, [folderId, router]);
 
